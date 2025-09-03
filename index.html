@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selamat Ulang Tahun!</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffe0f0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    overflow: hidden;
+  }
+  .page {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #333;
+  }
+  .page.active {
+    display: flex;
+  }
+  h1, p {
+    margin: 0.5em 0;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #e91e63;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  img {
+    max-width: 300px;
+    border-radius: 10px;
+  }
+
+  /* Animasinya */
+  @keyframes slideRight { from {transform: translateX(-100%); opacity:0;} to {transform: translateX(0); opacity:1;} }
+  @keyframes slideLeft { from {transform: translateX(100%); opacity:0;} to {transform: translateX(0); opacity:1;} }
+  @keyframes slideUp { from {transform: translateY(100%); opacity:0;} to {transform: translateY(0); opacity:1;} }
+  @keyframes zoomBounce { 0%{transform: scale(0.2); opacity:0;} 50%{transform: scale(1.2);} 70%{transform: scale(0.9);} 100%{transform: scale(1); opacity:1;} }
+  @keyframes rotateIn { from {transform: rotate(-720deg); opacity:0;} to {transform: rotate(0); opacity:1;} }
+  @keyframes flipIn { from {transform: rotateY(180deg); opacity:0;} to {transform: rotateY(0); opacity:1;} }
+  @keyframes fadeGlow { 0%,100%{ color:#e91e63; text-shadow: 0 0 10px #e91e63; } 50%{ color:#ffeb3b; text-shadow: 0 0 20px #ffeb3b; } }
+
+  .slideRight { animation: slideRight 1s ease; }
+  .slideLeft { animation: slideLeft 1s ease; }
+  .slideUp { animation: slideUp 1s ease; }
+  .zoomBounce { animation: zoomBounce 1s ease; }
+  .rotateIn { animation: rotateIn 1s ease; }
+  .flipIn { animation: flipIn 1s ease; }
+  .fadeGlow { animation: fadeGlow 2s infinite alternate; }
+
+  /* SEMANGAT animasi */
+  .semangat {
+    display: inline-block;
+    font-weight: bold;
+    color: #d50000;
+    animation: semangatAnim 0.8s infinite alternate;
+  }
+  @keyframes semangatAnim {
+    from { transform: scale(1); text-shadow: 0 0 5px #d50000; }
+    to { transform: scale(1.5); text-shadow: 0 0 20px #d50000; }
+  }
+</style>
+</head>
+<body>
+
+<audio id="bg-music" src="music.mp3" autoplay loop></audio>
+
+<div class="page slideRight active" id="page1">
+  <div>
+    <h1>anak kecik 🎉</h1>
+    <p> anjay ulang tahun </p>
+    <button onclick="nextPage()">Mulai</button>
+  </div>
+</div>
+
+<div class="page slideLeft" id="page2"><div><h1>Selamat Ulang Tahun anak kecikk !</h1><p> This is Your Special Day </p><button onclick="nextPage()">Lanjutkan</button></div></div>
+<div class="page slideUp" id="page3"><div><h1></h1><p>Semoga semakin sukses dan sehat selalu!</p><button onclick="nextPage()">Lanjutkan</button></div></div>
+<div class="page zoomBounce" id="page4"><div><h1>🌟</h1><p>Semoga semua impianmu tercapai!</p><button onclick="nextPage()">Lanjutkan</button></div></div>
+<div class="page rotateIn" id="page5"><div><h1>🔥</h1><p>Teruslah menjadi pribadi yang kuat!</p><button onclick="nextPage()">Lanjutkan</button></div></div>
+<div class="page flipIn" id="page6"><div><h1>🎉</h1><p> jangan galak galak jadi senior :v </p><button onclick="nextPage()">Lanjutkan</button></div></div>
+<div class="page slideRight" id="page7"><div><h1>🌈</h1><p>Apapun itu, I wanna say "you can do it"</p><button onclick="nextPage()">Lanjutkan</button></div></div>
+<div class="page zoomBounce" id="page8"><div><h1>😊</h1><p> and.. I know you have a lot of energy to do better <span class="semangat">SEMANGAT!</span></p><button onclick="nextPage()">Lanjutkan</button></div></div>
+<div class="page rotateIn" id="page9"><div><h1>✨</h1><p>Jadilah sinar bagi orang-orang di sekitarmu!</p><button onclick="nextPage()">Lanjutkan</button></div></div>
+
+<div class="page flipIn" id="page10">
+  <div>
+    <h1>🎈</h1>
+    <p> Maaf yaa Aku curi fotonya untuk page ini hehehe :v </p>
+    <img src="bocil.jpg" alt="">
+    <button onclick="nextPage()">Lanjutkan</button>
+  </div>
+</div>
+
+<div class="page fadeGlow" id="page11"><div><h1>🎊</h1><p>Semoga ulang tahunmu penuh kejutan yang indah!</p><button onclick="nextPage()">Lanjutkan</button></div></div>
+
+<div class="page zoomBounce" id="page12"><div><h1>😎</h1><p>Selamat ulang tahun! Enjoy Your pleasuree </p></div></div>
+
+<script>
+  let currentPage = 1;
+  const totalPages = 12;
+
+  function nextPage() {
+    const current = document.getElementById('page' + currentPage);
+    current.classList.remove('active');
+    currentPage++;
+    if(currentPage <= totalPages){
+      const next = document.getElementById('page' + currentPage);
+      next.classList.add('active');
+    }
+  }
+
+  // Play music on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const music = document.getElementById('bg-music');
+    music.play().catch(() => {
+      document.body.addEventListener('click', () => music.play(), { once: true });
+    });
+  });
+</script>
+
+</body>
+</html>
